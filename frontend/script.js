@@ -56,25 +56,40 @@ function initObs(){
 }
 
 // ── FORM SUBMISSION ──
-function submitForm(){
+document.getElementById('submit-request').addEventListener('click', () => {
   const n=document.getElementById('fn').value.trim(),
-        p=document.getElementById('fp').value.trim();
+        p=document.getElementById('fp').value.trim(),
+        d=document.getElementById('fd').value.trim();
   
   if(!n||!p){
     alert('Please enter your name and phone number.');
     return;
   }
   
+  // Build WhatsApp message
+  const lines = [
+    '*New Appointment Request*',
+    '━━━━━━━━━━━━━━━━━━━━',
+    `Name: ${n}`,
+    `Phone: ${p}`,
+    d    ? `Preferred Date: ${d}` : '',
+    '━━━━━━━━━━━━━━━━━━━━'
+  ].filter(Boolean).join('\n');
+
+  // Open WhatsApp with pre-filled message to clinic number
+  const waURL = 'https://wa.me/917075442266?text=' + encodeURIComponent(lines);
+  window.open(waURL, '_blank');
+  
+  // Show success message
   const s=document.getElementById('fsucc');
   s.style.display='block';
   
   // Clear form fields
-  ['fn','fp','fd','fm'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fr').selectedIndex=0;
+  ['fn','fp','fd'].forEach(id=>document.getElementById(id).value='');
   
   // Hide success message after 8 seconds
   setTimeout(()=>s.style.display='none',8000);
-}
+});
 
 // ── INITIALIZATION ──
 document.addEventListener('DOMContentLoaded',()=>{

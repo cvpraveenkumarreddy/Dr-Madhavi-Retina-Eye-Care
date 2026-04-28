@@ -255,7 +255,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(13,143,160,.12)}
 .wio-stat{color:#fff}
 .wio-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:800;color:#5ef0a0;line-height:1}
 .wio-txt{font-size:.82rem;opacity:.8;margin-top:3px}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .why-card{background:var(--bg);border-radius:14px;padding:20px;border:1px solid var(--border);transition:background .2s,transform .2s}
 .why-card:hover{background:var(--teal-pale);transform:translateY(-3px)}
 .wc-icon{font-size:1.8rem;margin-bottom:10px}
