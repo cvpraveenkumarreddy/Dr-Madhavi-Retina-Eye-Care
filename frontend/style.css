@@ -436,3 +436,16 @@ footer{background:var(--ink);color:rgba(255,255,255,.78);padding:72px 0 0}
   .cta-content{padding:40px 28px}
 }
 @media(min-width:641px){.wa-float{bottom:24px}}
+
+/* ─── FAQ SECTION ─── */
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{border:1px solid var(--border);border-radius:var(--r-sm);background:var(--white);overflow:hidden;transition:box-shadow .2s}
+.faq-item:hover{box-shadow:var(--shadow)}
+.faq-item summary{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);cursor:pointer;list-style:none;gap:12px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:1.4rem;font-weight:400;color:var(--teal);flex-shrink:0;transition:transform .2s}
+.faq-item[open] summary::after{content:'\2212';transform:rotate(0deg)}
+.faq-item[open]{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal-mist)}
+.faq-item[open] summary{color:var(--teal-dk)}
+.faq-ans{padding:0 22px 20px;border-top:1px solid var(--border);margin-top:2px}
+.faq-ans p{color:var(--ink-mid);line-height:1.7;font-size:.95rem;margin-top:14px}
