@@ -7,16 +7,16 @@ IG_ACCOUNT_ID = os.environ["IG_ACCOUNT_ID"]
 LOG_FILE      = "post_log.json"
 
 TOPICS = [
-  "diabetic retinopathy warning signs Tirupati",
-  "retinal detachment emergency signs Tirupati",
-  "macular degeneration age related risk",
-  "children eye exam school age Tirupati",
-  "dry eyes remedies summer Andhra Pradesh",
-  "floaters in vision when to worry",
-  "cataract surgery recovery tips Tirupati",
-  "screen time eye strain tips Telugu families",
-  "pilgrim eye care Tirupati Tirumala",
-  "glaucoma silent vision thief awareness",
+    "diabetic retinopathy warning signs Tirupati",
+    "retinal detachment emergency signs Tirupati",
+    "macular degeneration age related risk",
+    "children eye exam school age Tirupati",
+    "dry eyes remedies summer Andhra Pradesh",
+    "floaters in vision when to worry",
+    "cataract surgery recovery tips Tirupati",
+    "screen time eye strain tips Telugu families",
+    "pilgrim eye care Tirupati Tirumala",
+    "glaucoma silent vision thief awareness",
 ]
 
 def pick_topic():
@@ -35,11 +35,16 @@ def pick_topic():
 
 def get_season():
     m = datetime.now().month
-    if m in [3,4,5]: return "Peak summer in Tirupati - UV exposure and dry eyes very common"
-    elif m in [6,7,8]: return "Monsoon - conjunctivitis and eye infections spike in Tirupati"
-    elif m in [10,11]: return "Diwali season - firecracker eye injury awareness important"
-    elif m == 1: return "Sankranti - pilgrim season in Tirupati at its peak"
-    else: return "Remind patients about routine eye check-ups in Tirupati"
+    if m in [3,4,5]:
+        return "Peak summer in Tirupati - UV exposure and dry eyes very common"
+    elif m in [6,7,8]:
+        return "Monsoon - conjunctivitis and eye infections spike in Tirupati"
+    elif m in [10,11]:
+        return "Diwali season - firecracker eye injury awareness important"
+    elif m == 1:
+        return "Sankranti - pilgrim season in Tirupati at its peak"
+    else:
+        return "Remind patients about routine eye check-ups in Tirupati"
 
 def generate_post(topic):
     client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
@@ -77,7 +82,7 @@ def post_to_instagram(caption):
     )
     print("Media response:", r.json())
     creation_id = r.json()["id"]
-  time.sleep(10)
+    time.sleep(10)
     r2 = requests.post(
         f"https://graph.facebook.com/v20.0/{IG_ACCOUNT_ID}/media_publish",
         data={"creation_id": creation_id, "access_token": META_TOKEN}
