@@ -4,6 +4,7 @@ from datetime import datetime
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
 META_TOKEN    = os.environ["META_ACCESS_TOKEN"]
 IG_ACCOUNT_ID = os.environ["IG_ACCOUNT_ID"]
+FB_PAGE_ID    = "17602175009034071"
 LOG_FILE      = "post_log.json"
 
 TOPICS = [
@@ -80,16 +81,26 @@ def post_to_instagram(caption):
         f"https://graph.facebook.com/v20.0/{IG_ACCOUNT_ID}/media",
         data={"image_url": image_url, "caption": caption, "access_token": META_TOKEN}
     )
-    print("Media response:", r.json())
+    print("Instagram media response:", r.json())
     creation_id = r.json()["id"]
     time.sleep(10)
     r2 = requests.post(
         f"https://graph.facebook.com/v20.0/{IG_ACCOUNT_ID}/media_publish",
         data={"creation_id": creation_id, "access_token": META_TOKEN}
     )
-    print("Publish response:", r2.json())
-    print(f"Posted at {datetime.now()}: {caption[:60]}...")
+    print("Instagram publish response:", r2.json())
+    print(f"Instagram posted at {datetime.now()}: {caption[:60]}...")
+
+def post_to_facebook(caption):
+    image_url = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1080"
+    r = requests.post(
+        f"https://graph.facebook.com/v20.0/{FB_PAGE_ID}/photos",
+        data={"url": image_url, "caption": caption, "access_token": META_TOKEN}
+    )
+    print("Facebook post response:", r.json())
+    print(f"Facebook posted at {datetime.now()}: {caption[:60]}...")
 
 topic   = pick_topic()
 caption = generate_post(topic)
 post_to_instagram(caption)
+post_to_facebook(caption)
