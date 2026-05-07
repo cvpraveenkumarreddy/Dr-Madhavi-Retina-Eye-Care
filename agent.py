@@ -44,7 +44,7 @@ def get_season():
 def generate_post(topic):
     client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
     msg = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-opus-4-5",
         max_tokens=1000,
         system="""You are the social media voice of Dr. Madhavi Retina Eye Care,
 located in Tirupati, Andhra Pradesh. Dr. Madhavi is a senior retina
