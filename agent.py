@@ -1,4 +1,4 @@
-import anthropic, requests, json, os, random
+import anthropic, requests, json, os, random, time
 from datetime import datetime
 
 ANTHROPIC_KEY = os.environ["ANTHROPIC_API_KEY"]
@@ -77,6 +77,7 @@ def post_to_instagram(caption):
     )
     print("Media response:", r.json())
     creation_id = r.json()["id"]
+  time.sleep(10)
     r2 = requests.post(
         f"https://graph.facebook.com/v20.0/{IG_ACCOUNT_ID}/media_publish",
         data={"creation_id": creation_id, "access_token": META_TOKEN}
